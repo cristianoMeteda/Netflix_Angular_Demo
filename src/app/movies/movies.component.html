@@ -1,0 +1,13 @@
+<div class="movies-container">
+    <div class="d-flex flex-wrap col-12">
+        <mat-card class="col-md-4 col-12 m-2 custom-card" *ngFor="let movie of popularMovies" style="width: 30%;">
+            <mat-card-content class="col-12" style="padding: 0;">
+                <img [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path" style="width: 100%;">
+                <div style="position: absolute;bottom: 0; left: 0; right: 0; background-color: rgba(0, 0, 0, 0.5); color: white; padding: 10px;">
+                    <h4>{{movie.title}}</h4>
+                    <p>Original Language: {{movie.original_language}}</p>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
