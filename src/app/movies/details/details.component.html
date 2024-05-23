@@ -1,0 +1,39 @@
+<h1 style="font-family:Georgia, 'Times New Roman', Times, serif; font-size: 25px;">{{ movieDetails?.original_title }}</h1>
+<img [src]="'https://image.tmdb.org/t/p/w500/' + movieDetails?.poster_path" style="width: 70%;">
+<br />
+<div class="col-12 m-4" style="font-size: 20px;">
+    <br />
+    <iframe width="560" height="315" [src]= "movieTrailer"
+    title="YouTube video player" frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <br />
+    <p> - Overview: {{ movieDetails?.overview }}</p>
+    <p> - Release Date: {{ movieDetails?.release_date}}</p>
+    <p> - Status: {{ movieDetails?.status }}</p>
+    <p> - Budget: {{ movieDetails?.budget}}</p>
+    <p> - Original Language: {{ movieDetails?.original_language }}</p>
+    <p> - Popularity: {{ movieDetails?.popularity }}</p>
+    <p> - IMdb_Id: {{movieDetails?.imdb_id}}</p>
+    <p> - Origin Country: {{movieDetails?.origin_country}}</p>
+    <br/>
+    @if (movieDetails?.production_companies) {
+        <p> - Production Companies: </p>
+        <div class="d-flex flex-wrap">
+            @for (company of movieDetails?.production_companies; track $index) {
+                @if (company.logo_path) {
+                    <mat-card class="m-1" style="width: 30%;">
+                        <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500/' + company.logo_path" style="width: auto;"/>
+                        <!-- <mat-card-content>
+                            <p style="color: black; font-family:Georgia, 'Times New Roman', Times, serif;">Company Name: {{company.name}}</p>
+                            <p style="color: black; font-family:Georgia, 'Times New Roman', Times, serif;">Company Origin Country: {{company.origin_country}}</p>
+                        </mat-card-content> -->
+                    </mat-card>
+                }
+            }
+        </div>
+    }
+</div>
+    
+
+

@@ -2,6 +2,14 @@ export interface IMovieResult<T> {
     results: T[];
 }
 
+export interface ITrailer {
+    name: string;
+    key: string;
+    type: string;
+    official: boolean;
+    published_at: Date;
+}
+
 export interface IProductionCompany {
     id: number;
     logo_path: string;

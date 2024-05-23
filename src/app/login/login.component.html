@@ -1,1 +1,26 @@
-<p>login works!</p>
+<div class="login-container">
+    <mat-card class="custom-card">
+        <h1 *ngIf="isLoginMode" style="color: red;">SignIn</h1>
+        <h1 *ngIf="!isLoginMode" style="color: red;">Register</h1>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="col-12">
+                <mat-form-field class="col-12 m-2">
+                    <input matInput placeholder="email address" name="email" [formControl]="emailControl">
+                </mat-form-field>
+                <mat-form-field class="col-12 m-2">
+                    <input matInput placeholder="password" name="password" type="password" [formControl]="passwordControl"
+                        [type]="hidePwd ? 'password' : 'text'">
+                    <mat-icon matSuffix (click)="hidePwd =!hidePwd">{{hidePwd? 'visibility_off' : 'visibility'}}</mat-icon>
+                </mat-form-field>
+                <div class="col-12 m-2">
+                    <button mat-raised-button style="color: white; background-color: red; width: 100%;" type="submit" 
+                        [disabled]="!loginForm.valid">{{isLoginMode ? 'Login' : 'Register'}}</button>
+                </div>
+                <div class="col-12 m-2">
+                    <a (click)="switchMode()" style="cursor: pointer; text-decoration: underline; color: red;">
+                        {{isLoginMode ? 'Don\'t have an account? Register' : 'Already have an account? Login' }}
+                    </a>
+                </div>   
+            </form>
+    </mat-card>
+</div>
+<mat-snack-bar-container></mat-snack-bar-container>
