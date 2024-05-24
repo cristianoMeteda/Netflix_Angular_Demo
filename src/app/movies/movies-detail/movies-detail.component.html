@@ -1,14 +1,21 @@
 <div class="movie-container" style="color: white;">
     <button mat-flat-button color="warn" (click)="onBack()" style="height: 20px;margin-bottom: 20px;">BACK</button>
     <br/>
-    <h1 style="color: red; font-size: 50px;">Movie Details</h1>
-    <app-details [movieDetails]="movieDetails" [movieTrailer]="movieTrailer"></app-details>
+    <h1 *ngIf="movieDetails" style="color: red; font-size: 50px;">Movie Details</h1>
+    <app-details *ngIf="movieDetails" [movieDetails]="movieDetails" [movieTrailer]="movieTrailer"></app-details>
     <br/>
-    <h1 style="color: red; font-size: 50px; margin-top: 20px;">Similar Movies</h1>
+    <h1 *ngIf="moviesSimilar" style="color: red; font-size: 50px; margin-top: 20px;">Similar Movies</h1>
     <div class="col-12 d-flex flex-wrap">
       @for (movie of moviesSimilar; track $index) {
-        <app-movie-poster [movie]="movie" (clickDetail)="onClick($event)" style="width: 33%;"></app-movie-poster>
+        <app-movie-poster *ngIf="movie" [movie]="movie" (clickDetail)="onClick($event)" style="width: 33%;"></app-movie-poster>
       }
     </div>
-  </div>
+    <br/>
+    <h1 *ngIf="movieReviews" style="color: red; font-size: 50px;">Movie Reviews</h1>
+    <div class="col-12 d-flex flex-wrap">
+      @for (review of movieReviews; track $index) {
+        <app-reviews *ngIf="review" [movieReview]="review" ></app-reviews>
+      }
+    </div>
+</div>
   

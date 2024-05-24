@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { IMovieDetails, IPopularMovie, ITrailer } from 'src/app/model/movieModels';
+import { IMovieDetails, IPopularMovie, IReview, ITrailer } from 'src/app/model/movieModels';
 import { MoviesHttpClientService } from '../movies-http.client.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -15,6 +15,7 @@ export class MoviesDetailComponent implements OnInit {
   movieDetails?: IMovieDetails;
   moviesSimilar?: IPopularMovie[];
   movieTrailer?: SafeResourceUrl;
+  movieReviews?: IReview[];
 
 
   constructor(private route: ActivatedRoute, 
@@ -28,11 +29,8 @@ export class MoviesDetailComponent implements OnInit {
       this.loadMovieDetails();
       this.loadSimilarMovies();
       this.loadMovieTrailer();
+      this.loadReviews();
     });
-  }
-
-  onBack(): void {
-    history.back();
   }
 
   loadMovieDetails() {
@@ -68,6 +66,22 @@ export class MoviesDetailComponent implements OnInit {
         },
         error: e => console.error(e)
       });
+  }
+
+  loadReviews() {
+    if (this.movieId)
+    this.movieService.getMovieReviews(this.movieId).subscribe({
+      next: (response) => {
+        if (response) {
+          this.movieReviews = response.results;
+        }
+      },
+      error: e => console.error(e)
+    });
+  }
+
+  onBack(): void {
+    history.back();
   }
 
   onClick(movieId: number): void {

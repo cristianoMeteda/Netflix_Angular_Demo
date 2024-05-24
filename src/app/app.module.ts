@@ -20,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarConfig, MatSnackBarModule } from '@angular/material/snack-bar'; // Assicurati di importare MatSnackBarModule
+import { ReviewsComponent } from './movies/reviews/reviews.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MatSnackBarConfig, MatSnackBarModule } from '@angular/material/snack-ba
     AppComponent,
     MoviesDetailComponent,
     MoviePosterComponent,
-    DetailsComponent
+    DetailsComponent,
+    ReviewsComponent
   ],
   imports: [
     CommonModule,

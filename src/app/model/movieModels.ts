@@ -2,6 +2,20 @@ export interface IMovieResult<T> {
     results: T[];
 }
 
+export interface IAuthorDetails {
+    username: string;
+    avatar_path: string;
+    rating: number;
+}
+
+export interface IReview {
+    author: string;
+    content: string;
+    created_at: Date;
+    updated_at: Date;
+    author_details: IAuthorDetails
+}
+
 export interface ITrailer {
     name: string;
     key: string;
