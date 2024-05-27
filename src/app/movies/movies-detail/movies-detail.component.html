@@ -7,7 +7,7 @@
     <h1 *ngIf="moviesSimilar" style="color: red; font-size: 50px; margin-top: 20px;">Similar Movies</h1>
     <div class="col-12 d-flex flex-wrap">
       @for (movie of moviesSimilar; track $index) {
-        <app-movie-poster *ngIf="movie" [movie]="movie" (clickDetail)="onClick($event)" style="width: 33%;"></app-movie-poster>
+        <app-movie-poster *ngIf="movie && movie.poster_path" [movie]="movie" (clickDetail)="onClick($event)" style="width: 33%;"></app-movie-poster>
       }
     </div>
     <br/>

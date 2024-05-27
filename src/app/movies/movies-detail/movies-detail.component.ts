@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { IMovieDetails, IPopularMovie, IReview, ITrailer } from 'src/app/model/movieModels';
 import { MoviesHttpClientService } from '../movies-http.client.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-movies-detail',
@@ -26,58 +27,71 @@ export class MoviesDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.movieId = +params['id'];  
-      this.loadMovieDetails();
-      this.loadSimilarMovies();
-      this.loadMovieTrailer();
-      this.loadReviews();
+    this.loadAllMovieData();
     });
   }
 
-  loadMovieDetails() {
+  private async loadAllMovieData() {
+    if (this.movieId) 
+      try {
+    await Promise.all([ //mantiene vantaggio asincronia e miglioria con esecuzione in parallelo
+      this.loadMovieDetails(),
+      this.loadSimilarMovies(),
+      this.loadMovieTrailer(),
+      this.loadReviews()
+    ]);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async loadMovieDetails() {
     if (this.movieId)
-    this.movieService.getMovieDetails(this.movieId).subscribe({
-      next: (response) => {
-        if (response) 
-          this.movieDetails = response;
+    try {
+      const response = await firstValueFrom(this.movieService.getMovieDetails(this.movieId));
+      if (response)
+        this.movieDetails = response;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async loadSimilarMovies() {
+    if (this.movieId)
+    try {
+      const response = await firstValueFrom(this.movieService.getSimilarMovies(this.movieId));
+      if (response) 
+        this.moviesSimilar = response.results;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async loadMovieTrailer() {
+    if (this.movieId)
+      try {
+        const response = await firstValueFrom(this.movieService.getMovieTrailer(this.movieId))
+        if (response && response.results.length > 0) {
+          const trailerKey = response.results[0].key;
+          this.movieTrailer = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${trailerKey}`);
+        }
+      } catch (e) {
+        console.error(e);
       }
-    });
+              
+      
   }
 
-  loadSimilarMovies() {
+  async loadReviews() {
     if (this.movieId)
-    this.movieService.getSimilarMovies(this.movieId).subscribe({
-      next: (response) => {
-        if (response) {
-          this.moviesSimilar = response.results;
-        }
-      },
-      error: e => console.error(e)
-    });
-  }
-
-  loadMovieTrailer() {
-    if (this.movieId)
-      this.movieService.getMovieTrailer(this.movieId).subscribe({
-        next: (response) => {
-          if (response) {
-            const trailerKey = response.results[0].key;
-            this.movieTrailer = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${trailerKey}`);
-          }
-        },
-        error: e => console.error(e)
-      });
-  }
-
-  loadReviews() {
-    if (this.movieId)
-    this.movieService.getMovieReviews(this.movieId).subscribe({
-      next: (response) => {
-        if (response) {
-          this.movieReviews = response.results;
-        }
-      },
-      error: e => console.error(e)
-    });
+    try {
+      const response = await firstValueFrom(this.movieService.getMovieReviews(this.movieId));
+      if(response)
+        this.movieReviews = response.results;
+    } catch (e) {
+      console.error(e);
+    }
+    
   }
 
   onBack(): void {
@@ -87,4 +101,11 @@ export class MoviesDetailComponent implements OnInit {
   onClick(movieId: number): void {
     this.router.navigate(['movie/' + movieId]);
   }
+
+  /*
+    Le funzioni asincrone vengono utilizzate quando dobbiamo eseguire operazioni che possono richiedere del tempo per completarsi,
+    come chiamate HTTP, operazioni su file, o operazioni di I/O. 
+    Esse permettono al codice di continuare a funzionare senza bloccare il thread principale, migliorando la reattività dell'applicazione.
+    Il programma tornerà ai risultati delle operazioni asincrone solo quando tutte sono completate.
+  */
 }

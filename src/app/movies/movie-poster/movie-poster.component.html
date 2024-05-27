@@ -1,4 +1,4 @@
-<mat-card *ngIf="movie?.poster_path" class="m-2" (click)="onClick(movie?.id)" style="cursor: pointer;">
+<mat-card class="m-2" (click)="onClick(movie?.id)" style="cursor: pointer;">
     <img [src]="'https://image.tmdb.org/t/p/w500/' + movie?.poster_path" style="width: auto; height: auto;">
     <div style="position: absolute;bottom: 0; left: 0; right: 0; background-color: rgba(0, 0, 0, 0.5); color: white; padding: 10px;">
         <h4 style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{movie?.title}}</h4>

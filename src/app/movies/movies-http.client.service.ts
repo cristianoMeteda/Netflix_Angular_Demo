@@ -11,7 +11,6 @@ export class MoviesHttpClientService {
 
     api : string = "https://api.themoviedb.org/3/movie/";
 
-
     constructor(private http: HttpClient) { }
 
     getPopularMovies(): Observable<IMovieResult<IPopularMovie>> {

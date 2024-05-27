@@ -19,6 +19,7 @@ export class AuthGuard implements CanActivate {
             return false;
         }
     }
+}
     /*
     unhautorized user go to /movies; authguard will call; verify of isAuthenticated: if 'false, go to /login'; otherwise, go to /movies
     */    
@@ -31,4 +32,3 @@ export class AuthGuard implements CanActivate {
     Resolve: Recupera dati prima che la rotta venga attivata.
     CanLoad: Verifica se un modulo di funzionalità può essere caricato.
     */
-}
