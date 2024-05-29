@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { MoviesComponent } from './movies/movies.component';
 import { MoviesDetailComponent } from './movies/movies-detail/movies-detail.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { SeriesComponent } from './series/series.component';
 
 const routes: Routes = [
     {   
@@ -23,6 +24,10 @@ const routes: Routes = [
     {
         path: 'movie/:id', 
         component: MoviesDetailComponent
+    },
+    {
+        path: 'series',
+        component: SeriesComponent
     }
 ];
 

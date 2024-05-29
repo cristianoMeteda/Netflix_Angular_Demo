@@ -1,11 +1,23 @@
+/*MOVIE MODELS*/
 export interface IMovieResult<T> {
     results: T[];
+}
+
+export interface ICastResult<T> {
+    cast: T[];
 }
 
 export interface IAuthorDetails {
     username: string;
     avatar_path: string;
     rating: number;
+}
+
+export interface IMovieCast {
+    name: string;
+    profile_path: string;
+    character: string;
+    id: number;
 }
 
 export interface IReview {
@@ -40,7 +52,6 @@ export interface IPopularMovie {
 
 export interface IMovieDetails {
     id: number;
-    homepage: string;
     imdb_id: string;
     origin_country: string[];
     original_language: string;

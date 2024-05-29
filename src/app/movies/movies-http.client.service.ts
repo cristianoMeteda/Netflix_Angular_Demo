@@ -1,7 +1,14 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { IMovieDetails, IMovieResult, IPopularMovie, IReview, ITrailer } from "../model/movieModels";
+import { ICastResult, 
+         IMovieCast, 
+         IMovieDetails, 
+         IMovieResult, 
+         IPopularMovie, 
+         IReview, 
+         ITrailer 
+        } from "../model/movieModels";
 
 @Injectable({
     providedIn: 'root'
@@ -32,4 +39,9 @@ export class MoviesHttpClientService {
     getMovieReviews(movieId: number): Observable<IMovieResult<IReview>> {
         return this.http.get<IMovieResult<IReview>>(this.api + `${movieId}/reviews`);
     }
+
+    getMovieCast(movieId: number): Observable<ICastResult<IMovieCast>> {
+        return this.http.get<ICastResult<IMovieCast>>(this.api + `${movieId}/credits`);
+    }
+
 }

@@ -1,9 +1,10 @@
+<app-header></app-header>
 <div class="movies-container">
-    <h1 style="color: red; font-size: 50px;">Welcome To Homepage</h1>
-    <button mat-raised-button color="warn" (click)="onLogout()">Logout</button>
+    <h1 style="color: red; font-size: 50px;">Welcome To Movies Homepage</h1>
+    <!--LIST OF MOVIES-->
     <div class="d-flex flex-wrap col-12 ">
         @for (movie of popularMovies; track $index) {
-            <app-movie-poster *ngIf="movie" [movie]="movie" (clickDetail)="onClick($event)" style="width: 33%;"></app-movie-poster>
+            <app-poster *ngIf="movie" [movie]="movie" (clickDetail)="onClick($event)" style="width: 33%;"></app-poster>
         }
     </div>
 </div>

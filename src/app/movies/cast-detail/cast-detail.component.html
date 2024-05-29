@@ -1,0 +1,7 @@
+<mat-card *ngIf="actor && actor.profile_path" class="m-2">
+    <img [src]="'https://image.tmdb.org/t/p/w500/' + actor.profile_path" style="width: auto; height: auto;">
+    <div style="position: absolute;bottom: 0; left: 0; right: 0; background-color: rgba(0, 0, 0, 0.5); color: white; padding: 10px;">
+      <h4 style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{actor.name}}</h4>
+      <p>Role: {{actor.character}}</p>
+    </div>
+  </mat-card>

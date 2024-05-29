@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { IMovieDetails, IPopularMovie, IReview, ITrailer } from 'src/app/model/movieModels';
+import { IMovieCast, IMovieDetails, IPopularMovie, IReview } from 'src/app/model/movieModels';
 import { MoviesHttpClientService } from '../movies-http.client.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { firstValueFrom } from 'rxjs';
@@ -17,7 +17,7 @@ export class MoviesDetailComponent implements OnInit {
   moviesSimilar?: IPopularMovie[];
   movieTrailer?: SafeResourceUrl;
   movieReviews?: IReview[];
-
+  movieCast?: IMovieCast[];
 
   constructor(private route: ActivatedRoute, 
               private movieService: MoviesHttpClientService,
@@ -38,7 +38,8 @@ export class MoviesDetailComponent implements OnInit {
       this.loadMovieDetails(),
       this.loadSimilarMovies(),
       this.loadMovieTrailer(),
-      this.loadReviews()
+      this.loadReviews(),
+      this.loadCast()
     ]);
     } catch (e) {
       console.error(e);
@@ -92,6 +93,18 @@ export class MoviesDetailComponent implements OnInit {
       console.error(e);
     }
     
+  }
+
+  async loadCast() {
+    if (this.movieId)
+    try {
+      const response = await firstValueFrom(this.movieService.getMovieCast(this.movieId));
+      if(response)
+        this.movieCast = response.cast;
+      console.log(this.movieCast);
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   onBack(): void {

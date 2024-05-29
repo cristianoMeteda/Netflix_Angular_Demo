@@ -1,17 +1,32 @@
 <div class="movie-container" style="color: white;">
     <button mat-flat-button color="warn" (click)="onBack()" style="height: 20px;margin-bottom: 20px;">BACK</button>
     <br/>
+        <!--MOVIE DETAILS-->
+
     <h1 *ngIf="movieDetails" style="color: red; font-size: 50px;">Movie Details</h1>
     <app-details *ngIf="movieDetails" [movieDetails]="movieDetails" [movieTrailer]="movieTrailer"></app-details>
     <br/>
-    <h1 *ngIf="moviesSimilar" style="color: red; font-size: 50px; margin-top: 20px;">Similar Movies</h1>
-    <div class="col-12 d-flex flex-wrap">
-      @for (movie of moviesSimilar; track $index) {
-        <app-movie-poster *ngIf="movie && movie.poster_path" [movie]="movie" (clickDetail)="onClick($event)" style="width: 33%;"></app-movie-poster>
+            <!--MOVIE CAST-->
+
+    <h1 *ngIf="movieDetails" style="color: red; font-size: 40px;">Movie Cast</h1>
+    <div class="d-flex flex-wrap col-12">
+      @for (actor of movieCast | slice:0:9; track $index) {
+        <app-cast-detail *ngIf="actor && actor.profile_path" [actor]="actor" style="width: 32%;" ></app-cast-detail>
       }
     </div>
     <br/>
-    <h1 *ngIf="movieReviews" style="color: red; font-size: 50px;">Movie Reviews</h1>
+            <!--SIMILAR MOVIES-->
+
+    <h1 *ngIf="moviesSimilar" style="color: red; font-size: 40px;">Similar Movies</h1>
+    <div class="col-12 d-flex flex-wrap">
+      @for (movie of moviesSimilar | slice:0:9;; track $index) {
+        <app-poster *ngIf="movie && movie.poster_path" [movie]="movie" (clickDetail)="onClick($event)" style="width: 32%;"></app-poster>
+      }
+    </div>
+    <br/>
+            <!--MOVIE REVIEWS-->
+
+    <h1 *ngIf="movieReviews" style="color: red; font-size: 40px;">Movie Reviews</h1>
     <div class="col-12 d-flex flex-wrap">
       @for (review of movieReviews; track $index) {
         <app-reviews *ngIf="review" [movieReview]="review" ></app-reviews>

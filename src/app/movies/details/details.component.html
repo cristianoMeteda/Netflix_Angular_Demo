@@ -3,10 +3,12 @@
 <br />
 <div *ngIf="movieDetails" class="col-12 m-4" style="font-size: 20px;">
     <br />
-    <iframe *ngIf="movieTrailer" width="560" height="315" [src]= "movieTrailer"
-    title="YouTube video player" frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <mat-card style="width: 30%;">
+        <iframe *ngIf="movieTrailer" width="auto" height="auto" [src]= "movieTrailer"
+        title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </mat-card>
     <br />
     <p *ngIf="movieDetails?.overview">- Overview: {{ movieDetails.overview }}</p>
     <p *ngIf="movieDetails?.release_date">- Release Date: {{ movieDetails.release_date }}</p>
@@ -16,18 +18,13 @@
     <p *ngIf="movieDetails?.popularity">- Popularity: {{ movieDetails.popularity }}</p>
     <p *ngIf="movieDetails?.imdb_id">- IMdb_Id: {{ movieDetails.imdb_id }}</p>
     <p *ngIf="movieDetails?.origin_country">- Origin Country: {{ movieDetails.origin_country }}</p>
-    <br/>
     @if (movieDetails.production_companies) {
+        <p> - Production Companies: </p>
         <div class="d-flex flex-wrap">
-            <p> - Production Companies: </p>
             @for (company of movieDetails.production_companies; track $index) {
                 @if (company.logo_path) {
                     <mat-card *ngIf="company.logo_path" class="m-1" style="width: 30%;">
                         <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500/' + company.logo_path" style="width: auto;"/>
-                        <!-- <mat-card-content>
-                            <p style="color: black; font-family:Georgia, 'Times New Roman', Times, serif;">Company Name: {{company.name}}</p>
-                            <p style="color: black; font-family:Georgia, 'Times New Roman', Times, serif;">Company Origin Country: {{company.origin_country}}</p>
-                        </mat-card-content> -->
                     </mat-card>
                 }
             }

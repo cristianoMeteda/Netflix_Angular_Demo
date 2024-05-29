@@ -10,7 +10,6 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatCardModule } from '@angular/material/card';
 import { MoviesDetailComponent } from './movies/movies-detail/movies-detail.component';
-import { MoviePosterComponent } from './movies/movie-poster/movie-poster.component';
 import { MatButtonModule } from '@angular/material/button';
 import { DetailsComponent } from './movies/details/details.component';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -22,6 +21,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarConfig, MatSnackBarModule } from '@angular/material/snack-bar'; // Assicurati di importare MatSnackBarModule
 import { ReviewsComponent } from './movies/reviews/reviews.component';
 import {MatIconModule} from '@angular/material/icon';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { CastDetailComponent } from './movies/cast-detail/cast-detail.component';
+import { HeaderComponent } from './header/header.component';
+import { SeriesComponent } from './series/series.component';
+import { PosterComponent } from './shared/poster/poster.component';
+
 
 @NgModule({
   declarations: [
@@ -29,9 +34,13 @@ import {MatIconModule} from '@angular/material/icon';
     MoviesComponent,
     AppComponent,
     MoviesDetailComponent,
-    MoviePosterComponent,
+    PosterComponent,
     DetailsComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    CastDetailComponent,
+    HeaderComponent,
+    SeriesComponent,
+    PosterComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +55,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule, 
-    MatIconModule
+    MatIconModule,
+    SlickCarouselModule
   ],
   providers: [
     MatSnackBarConfig,
