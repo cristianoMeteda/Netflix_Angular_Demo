@@ -1,0 +1,13 @@
+<div class="season-container">
+    <button mat-flat-button color="warn" (click)="onBack()" style="height: 20px; margin-bottom: 20px;">BACK</button>
+    <h1 *ngIf="seasonDetails" style="color: red; font-size: 50px;">Season Details</h1>
+    <div *ngIf="seasonDetails">
+        <h1 style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 25px;">{{ seasonDetails.name }}</h1>
+        <img *ngIf="seasonDetails.poster_path" [src]="'https://image.tmdb.org/t/p/w500/' + seasonDetails.poster_path" style="width: 70%;">
+        <br />
+        <p *ngIf="seasonDetails.overview">- Overview: {{ seasonDetails.overview }}</p>
+    </div>
+    <div *ngIf="!seasonDetails" class="loading">
+        <p>Loading season details...</p>
+    </div>
+</div>

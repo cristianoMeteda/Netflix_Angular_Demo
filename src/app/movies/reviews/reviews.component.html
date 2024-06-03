@@ -1,8 +1,10 @@
 <mat-card class="p-4 m-1" style="color: white; background-color: rgba(51, 51, 51, 0.29);">
     <p *ngIf="movieReview?.author"> - Author: {{ movieReview?.author }}</p>
     <p *ngIf="movieReview?.author_details?.avatar_path"> - Avatar author: 
-        <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500/' + 
-        movieReview?.author_details?.avatar_path" style="width: 100px; height: 100px;"/></p>
+        <img mat-card-image 
+            [src]="'https://image.tmdb.org/t/p/w500/' + 
+            movieReview?.author_details?.avatar_path" style="width: 100px; height: 100px;"/>
+    </p>
     <p *ngIf="movieReview?.author_details?.rating !== null"> - Rating author: {{movieReview?.author_details?.rating}}</p>
     <p *ngIf="movieReview?.content"> - Content: {{ movieReview?.content }}</p>
     <p *ngIf="movieReview?.created_at"> - Created at: {{ movieReview?.created_at }}</p>

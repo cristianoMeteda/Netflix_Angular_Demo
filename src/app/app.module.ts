@@ -20,12 +20,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarConfig, MatSnackBarModule } from '@angular/material/snack-bar'; // Assicurati di importare MatSnackBarModule
 import { ReviewsComponent } from './movies/reviews/reviews.component';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { CastDetailComponent } from './movies/cast-detail/cast-detail.component';
 import { HeaderComponent } from './header/header.component';
 import { SeriesComponent } from './series/series.component';
 import { PosterComponent } from './shared/poster/poster.component';
+import { SeriesDetailComponent } from './series/series-detail/series-detail.component';
+import { SeasonDetailsComponent } from './series/season-details/season-details.component';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { PosterComponent } from './shared/poster/poster.component';
     CastDetailComponent,
     HeaderComponent,
     SeriesComponent,
-    PosterComponent
+    PosterComponent,
+    SeriesDetailComponent,
+    SeasonDetailsComponent
   ],
   imports: [
     CommonModule,

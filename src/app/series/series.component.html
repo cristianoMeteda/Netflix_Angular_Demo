@@ -3,7 +3,9 @@
     <h1 style="color: red; font-size: 50px;">Welcome To Series Homepage</h1>
     <div class="d-flex flex-wrap col-12 ">
         @for (serie of popularSeries; track $index) {
-            <app-poster *ngIf="serie" [serie]="serie" style="width: 32%;"></app-poster>
-        }
+            <app-poster *ngIf="serie" 
+                        [serie]="serie" 
+                        (clickDetail)="onClick($event)" 
+                        style="width: 32%;"></app-poster>}
     </div>
 </div>

@@ -1,0 +1,48 @@
+<div class="serie-container">
+    <button mat-flat-button color="warn" (click)="onBack()" style="height: 20px;margin-bottom: 20px;">BACK</button>
+    <br/>
+        <!--SERIE DETAILS-->
+
+        <h1 *ngIf="serieDetails" style="color: red; font-size: 50px;">Serie Details</h1>
+        <h1 *ngIf="serieDetails?.original_name" style="font-family:Georgia, 'Times New Roman', Times, serif; font-size: 25px;">{{ serieDetails?.original_name }}</h1>
+        <img *ngIf="serieDetails?.poster_path" [src]="'https://image.tmdb.org/t/p/w500/' + serieDetails?.poster_path" style="width: 70%;display: block;margin: 0 auto;">
+        <br />
+        <div *ngIf="serieDetails" class="col-12 m-4" style="font-size: 20px; margin: 20px;">
+            <br />
+            <p *ngIf="serieDetails?.overview">- Overview: {{ serieDetails.overview }}</p>
+            <p *ngIf="serieDetails?.original_language">- Original Language: {{ serieDetails.original_language }}</p>
+            <p *ngIf="serieDetails?.popularity">- Popularity: {{ serieDetails.popularity }}</p>
+            <p *ngIf="serieDetails?.number_of_episodes">- Number of episodes: {{ serieDetails.number_of_episodes }}</p>
+            <p *ngIf="serieDetails?.number_of_seasons">- Number of seasons: {{ serieDetails.number_of_seasons }}</p>
+            @if (serieDetails.production_companies) {
+                <p> - Production Companies: </p>
+                <div class="d-flex flex-wrap">
+                    @for (company of serieDetails.production_companies; track $index) {
+                        @if (company.logo_path) {
+                            <mat-card *ngIf="company.logo_path" class="m-1" style="width: 30%;">
+                                <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500/' + company.logo_path" style="width: auto;"/>
+                            </mat-card>
+                        }
+                    }
+                </div>
+            }
+            <br/>
+            @if (serieDetails.seasons && serieDetails.poster_path != null) {
+                <h1 *ngIf="serieDetails.poster_path != null" style="color: red; font-size: 40px;"> Seasons </h1>
+                <div class="d-flex flex-wrap">
+                    @for (season of serieDetails.seasons; track $index) {
+                        @if (season.poster_path) {
+                            <mat-card *ngIf="serieId" class="m-1" style="width: 30%; cursor: pointer;" (click)="onClick(serieId, season.season_number)" >
+                                <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500/' + season.poster_path" style="width: auto;"/>
+                                <div class="season-info">
+                                    <h4 style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{season.name}}</h4>
+                                    <p>Episodes count : {{season.episode_count}}</p>
+                                </div>
+                            </mat-card>
+                        }
+                    }
+                </div>
+            }
+
+        </div>
+</div>

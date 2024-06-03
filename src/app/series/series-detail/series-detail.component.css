@@ -1,14 +1,13 @@
-.movie-details-container {
+.serie-container {
+    height: auto;
+    width: 100%;
+    margin-bottom: 70px;
+    padding: 40px;
     background-color: black;
     color: white;
 }
 
-.movie-details-container img {
-    display: block;
-    margin: 0 auto;
-}
-
-.origin-country-info {
+.season-info {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -19,9 +18,4 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-}
-
-.details-content {
-    font-size: 20px;
-    margin: 20px;
 }

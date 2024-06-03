@@ -7,7 +7,7 @@
         </div>
     </mat-card>
 } @else if (serie) {
-    <mat-card class="m-2" style="cursor: pointer;">
+    <mat-card class="m-2" (click)="onClick(serie.id)" style="cursor: pointer;">
         <img [src]="'https://image.tmdb.org/t/p/w500/' + serie.poster_path" style="width: auto; height: auto;">
         <div class="movie-info">
             <h4 style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{serie.name}}</h4>

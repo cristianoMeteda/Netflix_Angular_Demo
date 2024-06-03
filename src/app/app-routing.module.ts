@@ -5,6 +5,8 @@ import { MoviesComponent } from './movies/movies.component';
 import { MoviesDetailComponent } from './movies/movies-detail/movies-detail.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { SeriesComponent } from './series/series.component';
+import { SeriesDetailComponent } from './series/series-detail/series-detail.component';
+import { SeasonDetailsComponent } from './series/season-details/season-details.component';
 
 const routes: Routes = [
     {   
@@ -28,6 +30,14 @@ const routes: Routes = [
     {
         path: 'series',
         component: SeriesComponent
+    },
+    {
+        path: 'serie/:id', 
+        component: SeriesDetailComponent
+    },
+    {
+        path: 'series/:id/season/:seasonNumber', 
+        component: SeasonDetailsComponent 
     }
 ];
 

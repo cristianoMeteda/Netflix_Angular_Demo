@@ -1,36 +1,39 @@
-<h1 *ngIf="movieDetails?.original_title" style="font-family:Georgia, 'Times New Roman', Times, serif; font-size: 25px;">{{ movieDetails?.original_title }}</h1>
-<img *ngIf="movieDetails?.poster_path" [src]="'https://image.tmdb.org/t/p/w500/' + movieDetails?.poster_path" style="width: 70%;">
-<br />
-<div *ngIf="movieDetails" class="col-12 m-4" style="font-size: 20px;">
+<div class="movie-details-container">
+    <h1 *ngIf="movieDetails?.original_title" style="font-family:Georgia, 'Times New Roman', Times, serif; font-size: 25px;">{{ movieDetails?.original_title }}</h1>
+    <img *ngIf="movieDetails?.poster_path" [src]="'https://image.tmdb.org/t/p/w500/' + movieDetails?.poster_path" style="width: 70%;">
     <br />
-    <mat-card style="width: 30%;">
-        <iframe *ngIf="movieTrailer" width="auto" height="auto" [src]= "movieTrailer"
-        title="YouTube video player" frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </mat-card>
-    <br />
-    <p *ngIf="movieDetails?.overview">- Overview: {{ movieDetails.overview }}</p>
-    <p *ngIf="movieDetails?.release_date">- Release Date: {{ movieDetails.release_date }}</p>
-    <p *ngIf="movieDetails?.status">- Status: {{ movieDetails.status }}</p>
-    <p *ngIf="movieDetails?.budget">- Budget: {{ movieDetails.budget }}</p>
-    <p *ngIf="movieDetails?.original_language">- Original Language: {{ movieDetails.original_language }}</p>
-    <p *ngIf="movieDetails?.popularity">- Popularity: {{ movieDetails.popularity }}</p>
-    <p *ngIf="movieDetails?.imdb_id">- IMdb_Id: {{ movieDetails.imdb_id }}</p>
-    <p *ngIf="movieDetails?.origin_country">- Origin Country: {{ movieDetails.origin_country }}</p>
-    @if (movieDetails.production_companies) {
-        <p> - Production Companies: </p>
-        <div class="d-flex flex-wrap">
-            @for (company of movieDetails.production_companies; track $index) {
-                @if (company.logo_path) {
-                    <mat-card *ngIf="company.logo_path" class="m-1" style="width: 30%;">
-                        <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500/' + company.logo_path" style="width: auto;"/>
-                    </mat-card>
+    <div *ngIf="movieDetails" class="details-content" >
+        <br />
+        <mat-card style="width: 30%;">
+            <iframe *ngIf="movieTrailer" width="auto" height="auto" [src]= "movieTrailer"
+            title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </mat-card>
+        <br />
+        <p *ngIf="movieDetails?.overview">- Overview: {{ movieDetails.overview }}</p>
+        <p *ngIf="movieDetails?.release_date">- Release Date: {{ movieDetails.release_date }}</p>
+        <p *ngIf="movieDetails?.status">- Status: {{ movieDetails.status }}</p>
+        <p *ngIf="movieDetails?.budget">- Budget: {{ movieDetails.budget }}</p>
+        <p *ngIf="movieDetails?.original_language">- Original Language: {{ movieDetails.original_language }}</p>
+        <p *ngIf="movieDetails?.popularity">- Popularity: {{ movieDetails.popularity }}</p>
+        <p *ngIf="movieDetails?.imdb_id">- IMdb_Id: {{ movieDetails.imdb_id }}</p>
+        <p *ngIf="movieDetails?.origin_country">- Origin Country: {{ movieDetails.origin_country }}</p>
+        @if (movieDetails.production_companies) {
+            <p> - Production Companies: </p>
+            <div class="d-flex flex-wrap">
+                @for (company of movieDetails.production_companies; track $index) {
+                    @if (company.logo_path) {
+                        <mat-card *ngIf="company.logo_path" class="m-1" style="width: 30%;">
+                            <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500/' + company.logo_path" style="width: auto;"/>
+                        </mat-card>
+                    }
                 }
-            }
-        </div>
-    }
+            </div>
+        }
+    </div>
 </div>
+
     
 
 
